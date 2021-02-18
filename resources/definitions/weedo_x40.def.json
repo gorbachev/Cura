@@ -17,8 +17,8 @@
         "variants_name": "Nozzle Type",
         "machine_extruder_trains":
         {
-            "0": "weedo_x40_extruder_left_0",
-            "1": "weedo_x40_extruder_right_0"
+            "0": "weedo_x40_extruder_left",
+            "1": "weedo_x40_extruder_right"
         },
         "platform_offset": [ 0, 0, 0]
     },
@@ -33,8 +33,8 @@
         
         
         "machine_extruder_count": { "default_value": 2 },
-        "machine_start_gcode": {"default_value": ";(**** start.gcode for X40 DUAL****)\nM104 S150\nG28 ; Home extruder\nG29\nM107 ; Turn off fan\nG90 ; Absolute positioning\nM82 ; Extruder in absolute mode\nG1 X-47 F3000\nT1 S\nM109 S{material_print_temperature_layer_0} T1\nG92 E0\nG1 E50 F300\nG92 E0\nT0 S\nM109 S{material_print_temperature_layer_0} T0\nG92 E0\nG1 E50 F300\nG92 E0" },
-        "machine_end_gcode": {"default_value": "(*********end X40 End.gcode*******)\nG28 X Y F3000\nG91 ; Relative positioning\nG1 E-6 ; Reduce filament pressure\nG90\nG0 Y300 F3000\nM104 S0 T0\nM104 S0 T1\nM140 S0\nM107\nM82" },
+        "machine_start_gcode": {"default_value": ";(**** start.gcode for X40 DUAL****)\n{IF_EXT0}M104 S150 T0\n{IF_EXT1}M104 S150 T1\nG28 ; Home extruder\nG29\nM107 ; Turn off fan\nG90 ; Absolute positioning\nM82 ; Extruder in absolute mode\nG1 X-47 F3000" },
+        "machine_end_gcode": {"default_value": "(*********end X40 End.gcode*******)\nG28 X Y F3000\nG91 ; Relative positioning\nG1 E-6 ; Reduce filament pressure\nG90\nG0 Y300 F3000\n{IF_EXT0}M104 S0 T0\n{IF_EXT1}M104 S0 T1\nM140 S0\nM107\nM82" },
         "prime_tower_position_x": { "default_value": 50 },
         "prime_tower_position_y": { "default_value": 250 },
     
